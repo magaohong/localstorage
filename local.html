@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="txt">
+	<button id="btn">添加</button>
+	<script>
+	var txt=document.querySelector("#txt"),
+		btn=document.querySelector("#btn");
+
+		//封装创建本地存储，localStorage;
+		//检查是否存在指定的key,不存在创建，存在获取值(数组)
+		function local(str){
+			var loc=localStorage,arr;
+			if(!loc.getItem(str)){
+				loc.setItem(str,[]);
+				arr=[];
+			}else{
+				arr=Array(loc.getItem(str));
+			}
+			return arr;	
+		}
+		function addloc(str,arr){
+			var loc=localStorage;
+				loc.setItem(str,arr);
+		}
+		var arr=local("ccc");
+		
+		btn.onclick=function(){
+			var text=txt.value;
+				arr.push(text);
+				addloc("ccc",arr)
+		}
+	
+	</script>
+</body>
+</html>
